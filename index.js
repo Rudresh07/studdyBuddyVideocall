@@ -4,6 +4,7 @@ const server = http.createServer(() => {
 })
 
 server.listen(4000, () => {
+    console.log("App is running on port 4000")
 })
 const webSocket = new Socket({httpServer: server})
 
