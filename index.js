@@ -97,7 +97,8 @@ const findRoom = roomName => {
 }
 
 webSocket.on('request', (req) => {
-    const connection = req.accept()
+    const connection = req.accept();
+    console.log("New connection accepted."); 
 
     connection.on('message', (message) => {
         const data = JSON.parse(message.utf8Data)
@@ -180,6 +181,7 @@ webSocket.on('request', (req) => {
     connection.on('close', () => {
         users.forEach(user => {
             if (user.conn === connection) {
+                console.log(`${user.name} has disconnected.`);
                 users.splice(users.indexOf(user), 1)
                 leaveUserFromAllRooms(user.username)
             }
